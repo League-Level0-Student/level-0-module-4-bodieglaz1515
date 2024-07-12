@@ -41,7 +41,7 @@ public class WheresWaldo extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 400;
 
-    PImage waldo;
+    PImage eminem;
 
     @Override
     public void settings() {
@@ -50,12 +50,16 @@ public class WheresWaldo extends PApplet {
 
     @Override
     public void setup() {
-        
+    	 eminem = loadImage("src/_02_boolean/_6_wheres_waldo/Screen_Shot_2024-07-11_at_4.44.40_PM-removebg-preview (1).png");
+    	 
+    	 eminem.resize(30, 30);   
+    	 
     }
+   
 
     @Override
     public void draw() {
-        
+      image(eminem,100,100,30,30);
     }
 
     static public void main(String[] args) {
