@@ -38,76 +38,117 @@ import processing.core.PImage;
  *      playWhoohoo() method, otherwise call the playDoh() method.
  */
 public class WheresWaldo extends PApplet {
-    static final int WIDTH = 600;
-    static final int HEIGHT = 400;
+	static final int WIDTH = 600;
+	static final int HEIGHT = 400;
 
-    PImage eminem;
+	PImage eminem;
+	PImage meow;
 
-    @Override
-    public void settings() {
-        size(WIDTH, HEIGHT);
-    }
+	@Override
+	public void settings() {
+		size(WIDTH, HEIGHT);
+	}
 
-    @Override
-    public void setup() {
-    	 eminem = loadImage("src/_02_boolean/_6_wheres_waldo/Screen_Shot_2024-07-11_at_4.44.40_PM-removebg-preview (1).png");
-    	 
-    	 eminem.resize(30, 30);   
-    	 
-    }
-   
+	@Override
+	public void setup() {
+		eminem = loadImage(
+				"src/_02_boolean/_6_wheres_waldo/Screen_Shot_2024-07-11_at_4.44.40_PM-removebg-preview (1).png");
+		meow = loadImage("src/_02_boolean/_6_wheres_waldo/Screen_Shot_2024-07-12_at_3.34.39_PM-removebg-preview.png");
+		eminem.resize(30, 30);
 
-    @Override
-    public void draw() {
-      image(eminem,100,100,30,30);
-    }
+	}
 
-    static public void main(String[] args) {
-        PApplet.main(WheresWaldo.class.getName());
-    }
+	@Override
+	public void draw() {
+      image(eminem,340,100,30,30);
+//      image(meow,10,10,120,80);
+//      image(meow,90,10,120,80);
+//      image(meow,170,10,120,80);
+//      image(meow,250,10,120,80);
+//      image(meow,330,10,120,80);
+//      image(meow,410,10,120,80);
+//      image(meow,490,10,120,80);
+//      image(meow,90,90,120,80);
+//      image(meow,170,90,120,80);
+//      image(meow,250,90,120,80);
+//      image(meow,330,90,120,80);
+//      image(meow,410,90,120,80);
+//      image(meow,490,90,120,80);     image(meow,10,10,120,80);
+//      image(meow,90,90,120,80);
+//      image(meow,170,180,120,80);
+//      image(meow,250,180,120,80);
+//      image(meow,330,180,120,80);
+//      image(meow,410,180,120,80);
+//      image(meow,490,180,120,80);
+for(int MEOW = 0; MEOW<8;MEOW++ ){
+	
+		for (int mewo = 0; mewo < 8; mewo++) {
+			image(meow, 10 + 80 * mewo, MEOW*80, 120, 80);
+			if(mousePressed){
+		System.out.println(mouseX+ "  " +mouseY);}
+		}
+		 if (mouseX > 350 && mouseY > 113 && mouseX <359 && mouseY <129 && mousePressed) {
+			 
+			 for(int hdhd=0; hdhd<1000000000;hdhd++) {
+			 playWhoohoo();
+			 try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 }
+			 			 
+		 }
+ }
+	}
 
-    /*********************** DO NOT MODIFY THE CODE BELOW ********************/
+	static public void main(String[] args) {
+		PApplet.main(WheresWaldo.class.getName());
+	}
 
-    Clip clip = null;
+	/*********************** DO NOT MODIFY THE CODE BELOW ********************/
 
-    public void playDoh() {
-        if (clip == null || !clip.isActive()) {
-            clip = playSound("homer-doh.wav");
-        }
-    }
+	Clip clip = null;
 
-    public void playWhoohoo() {
-        if (clip == null || !clip.isActive()) {
-            clip = playSound("homer-woohoo.wav");
-        }
-    }
+	public void playDoh() {
+		if (clip == null || !clip.isActive()) {
+			clip = playSound("homer-doh.wav");
+		}
+	}
 
-    public Clip getSong(String fileName) {
-        String path = "src/";
-        Clip clip = null;
+	public void playWhoohoo() {
+		if (clip == null || !clip.isActive()) {
+			clip = playSound("meow.wav");
+		}
+	}
 
-        // Note: use .wav files
-        try {
-            clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path + fileName));
-            clip.open(inputStream);
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e.getMessage() + " for " + path + fileName);
-        }
+	public Clip getSong(String fileName) {
+		String path = "src/";
+		Clip clip = null;
 
-        return clip;
-    }
+		// Note: use .wav files
+		try {
+			clip = AudioSystem.getClip();
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path + fileName));
+			clip.open(inputStream);
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e.getMessage() + " for " + path + fileName);
+		}
 
-    public Clip playSound(String fileName) {
-        final Clip clip = getSong(fileName);
+		return clip;
+	}
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                clip.start();
-            }
-        }).start();
+	public Clip playSound(String fileName) {
+		final Clip clip = getSong(fileName);
 
-        return clip;
-    }
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				clip.start();
+			}
+		}).start();
+
+		return clip;
+	}
 }
