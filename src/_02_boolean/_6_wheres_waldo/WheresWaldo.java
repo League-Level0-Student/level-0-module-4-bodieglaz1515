@@ -91,12 +91,12 @@ for(int MEOW = 0; MEOW<8;MEOW++ ){
 			 
 			 for(int hdhd=0; hdhd<1000000000;hdhd++) {
 			 playWhoohoo();
-			 try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	//		 try {
+//				Thread.sleep(10);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			 }
 			 			 
 		 }
