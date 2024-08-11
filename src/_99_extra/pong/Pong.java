@@ -68,6 +68,10 @@ public class Pong extends PApplet {
 			xSpeed=-xSpeed;
 			
 		}
+		if (Y>790){
+		int score = score +1;
+			
+		}
 
 	}
 
