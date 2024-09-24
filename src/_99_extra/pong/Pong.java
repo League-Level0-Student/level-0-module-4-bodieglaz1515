@@ -1,11 +1,15 @@
 package _99_extra.pong;
 
+import javax.swing.JOptionPane;
+
 import processing.core.PApplet;
+
 
 public class Pong extends PApplet {
 	static final int WIDTH = 800;
 	static final int HEIGHT = 600;
-
+String jimmy;
+Double jimmyAsInt;
 	@Override
 	public void settings() {
 		size(WIDTH, HEIGHT);
@@ -13,13 +17,19 @@ public class Pong extends PApplet {
 
 	@Override
 	public void setup() {
+		jimmy = JOptionPane.showInputDialog("Put in as a number how hard you want this game to be, 2 is the maximum dificulty and 1.1 is the minimum");
+	jimmyAsInt= Double.parseDouble(jimmy);
+		if(jimmyAsInt > 2 || jimmyAsInt< 1.1){
 
+			JOptionPane.showMessageDialog(null,"you chose a number higher than 2 or less than 1.1 u monkey TRY AGAIN");
+System.exit(0);
+		}
 	}
 
-	int xSpeed = 10;
-	int ySpeed = 10;
-	int x = 100;
-	int y = 100;
+	double xSpeed = 10;
+	double ySpeed = 10;
+	double x = 100;
+	double y = 100;
 	int recx = 50;
 	int recy = 0;
 	int score = 0;
@@ -28,17 +38,19 @@ public class Pong extends PApplet {
 
 	@Override
 	public void draw() {
+
 		background(80, 80, 0);
-		ellipse(x, y, 100, 100); // in draw method
+		text(score,100,100);
+		ellipse((int)x, (int)y, 100, 100); // in draw method
 		fill(100, 10, 250); // in draw method
 		noStroke(); // in draw method
 		x = x + xSpeed;
 		y = y + ySpeed;
+	
 		if (x > width) {
-			xSpeed = -xSpeed;
+			xSpeed = -xSpeed*jimmyAsInt;
 			if (x < 0) {
 				xSpeed = xSpeed * 2;
-				score = score + 1;
 			}
 		}
 		if (y > height) {
@@ -51,7 +63,7 @@ public class Pong extends PApplet {
 		if (y < 0) {
 			ySpeed = -ySpeed;
 			System.out.println("top");
-			
+
 		}
 		if (movingUp == true) {
 			recy = recy - 10;
@@ -64,13 +76,12 @@ public class Pong extends PApplet {
 		fill(100, 220, 50);
 		rect(recx, mouseY, 20, 100);
 		if (y> mouseY && y< mouseY +100 && x < recx+20) {
-			
+
 			xSpeed=-xSpeed;
-			
+
 		}
-		if (Y>790){
-		int score = score +1;
-			
+		if (x>800){
+			score = 1 + score; 
 		}
 
 	}
@@ -91,6 +102,7 @@ public class Pong extends PApplet {
 		System.out.println(keyCode);
 
 	}
+
 
 	@Override
 	public void keyReleased() {
